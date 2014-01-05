@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="p4preckwsolr" version="1.5">
+   <types>
+    <fieldType name="string" class="solr.StrField"  omitNorms="true"  omitTermFreqAndPositions="true"/>
+	<fieldType name="text" class="solr.TextField">
+		<analyzer>
+			<tokenizer class="solr.StandardTokenizerFactory" />
+		</analyzer>
+	</fieldType>
+
+	<fieldType name="long" class="solr.LongField" omitNorms="true"  omitTermFreqAndPositions="true"/>
+    <fieldType name="bool" class="solr.BoolField" omitNorms="true"   omitTermFreqAndPositions="true"/>
+    <fieldType name="int" class="solr.IntField" omitNorms="true"   omitTermFreqAndPositions="true"/>
+
+  	<fieldType name="sint" class="solr.SortableIntField" omitNorms="true"  omitTermFreqAndPositions="true"/>
+    <fieldType name="slong" class="solr.SortableLongField" omitNorms="true"  omitTermFreqAndPositions="true"/>
+    <fieldType name="sdouble" class="solr.SortableDoubleField" omitNorms="true"  omitTermFreqAndPositions="true"/>
+	</types>
+   <fields>
+   		<field name="id" type="slong"  indexed="true" stored="true" required="true" />
+		<field name="cust_id" type="long"  indexed="true" stored="true" />
+		<field name="status" type="int" indexed="true" stored="true" />
+		<field name="norm_word" type="string" indexed="true" stored="true" omitNorms="true" />
+		<field name="keyword" type="string" indexed="true" stored="true" omitNorms="true" />
+		<field name="keyword_text" type="text" indexed="true" stored="false" omitNorms="true" />
+		<copyField source="keyword" dest="keyword_text" />
+		<field name="category_id" type="int" indexed="true" stored="true" multiValued="true" />
+		<field name="qs_level" type="int" indexed="true" stored="true" />
+		<field name="all_rec_match_qs_level" type="int" indexed="true" stored="true" />
+		<field name="search_count" type="slong" indexed="true" stored="true" />
+		<field name="buy_count" type="slong" indexed="true" stored="true" />
+		<field name="asn_level" type="sint" indexed="true" stored="false" />
+		<field name="word_type" type="int" indexed="true" stored="true" />
+		<field name="gmt_create" type="long" indexed="false" stored="true" />
+		<field name="integrated_effect" type="int" indexed="true" stored="false" />
+		<field name="high_quality" type="int" indexed="true" stored="false" />
+		<field name="hot_search" type="int" indexed="true" stored="false" />
+		<field name="blue_sea" type="int" indexed="true" stored="false" />
+		<field name="is_added" type="bool" indexed="true" stored="true" />
+		<field name="is_offer_rec_keyword" type="bool" indexed="true" stored="false" />
+
+   </fields>
+   <uniqueKey>id</uniqueKey>
+   <solrQueryParser defaultOperator="OR" />
+</schema>
